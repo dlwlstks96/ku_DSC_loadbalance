@@ -12,11 +12,12 @@ public class AppCtx {
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
 
+        //
         DataSource ds = new DataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost/<tableName>?characterEncoding=utf8");
-        ds.setUsername("<ID>");
-        ds.setPassword("<Password>");
+        ds.setUrl("jdbc:mysql://localhost/ticketingService?characterEncoding=utf8");
+        ds.setUsername("ku_DSC_test01");
+        ds.setPassword("test01");
         ds.setInitialSize(2);
         ds.setMaxActive(100);
         return ds;
