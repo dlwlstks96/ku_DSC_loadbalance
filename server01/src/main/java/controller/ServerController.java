@@ -24,8 +24,6 @@ public class ServerController { //8081번 포트
     @GetMapping("/")
     public String checkToClient(){
 
-
-
         return "";
     }
 

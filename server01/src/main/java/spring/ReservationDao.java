@@ -20,7 +20,6 @@ public class ReservationDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
     //예매 정보 DB에 삽입
     public void insert(final Reservation reservation) {
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -37,58 +36,5 @@ public class ReservationDao {
             }
         });
     }
-
-    public Reservation selectBySeatNumber(Reservation res) {
-        List<Reservation> results = jdbcTemplate.query(
-                "select * from RESERVE01 where NAME = ? AND BIRTH = ? AND PHONENUMBER = ? AND SEATNUMBER = ?",
-                new RowMapper<Reservation>() {
-                    @Override
-                    public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
-                        Reservation reservation = new Reservation(
-                                rs.getString("NAME"),
-                                rs.getString("BIRTH"),
-                                rs.getString("PHONENUMBER"),
-                                rs.getString("SEATNUMBER"));
-                        reservation.setTicketID(rs.getLong("ID"));
-                        return reservation;
-                    }
-                },
-                res.getName(), res.getBirth(), res.getPhoneNumber(), res.getSeatNumber());
-        return results.isEmpty() ? null : results.get(0);
-    }
-
-//    //예매 정보 삭제
-//    public void delete(final Reservation reservation) {
-//        jdbcTemplate.update(new PreparedStatementCreator() {
-//            @Override
-//            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-//                PreparedStatement pstmt = con.prepareStatement(
-//                        "delete from RESERVE01 where NAME = ? and BIRTH = ? and SEATNUMBER = ?");
-//                pstmt.setString(1, reservation.getName());
-//                pstmt.setString(2, reservation.getBirth());
-//                pstmt.setString(3, reservation.getSeatNumber());
-//                return pstmt;
-//            }
-//        });
-//    }
-
-    //좌석 정보로 예매 정보 확인
-//    public Reservation selectBySeatNumber(String name, String birth, String seatNumber) {
-//        List<Reservation> results = jdbcTemplate.query(
-//                "select * from RESERVE01 where NAME = ? AND BIRTH = ? AND SEATNUMBER = ?",
-//                new RowMapper<Reservation>() {
-//                    @Override
-//                    public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
-//                        Reservation reservation = new Reservation(
-//                                rs.getString("NAME"),
-//                                rs.getString("BIRTH"),
-//                                rs.getString("SEATNUMBER"));
-//                        reservation.setTicketID(rs.getLong("ID"));
-//                        return reservation;
-//                    }
-//                },
-//                name, birth, seatNumber);
-//        return results.isEmpty() ? null : results.get(0);
-//    }
 
 }
