@@ -3,7 +3,7 @@ package config;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import spring.TicketDao;
+import spring.ReservationDao;
 
 @Configuration
 public class AppCtx {
@@ -24,8 +24,8 @@ public class AppCtx {
     }
 
     @Bean
-    public TicketDao ticketDao() {
-        return new TicketDao(dataSource());
+    public ReservationDao reservationDao() {
+        return new ReservationDao(dataSource());
     }
 
 }

@@ -1,21 +1,21 @@
 package domain;
 
-import java.time.LocalDateTime;
-
-public class Ticket {
+public class Reservation {
 
     private Long ticketID; //DB 자동 생성
     private String name;
     private String birth;
+    private String phoneNumber;
     private String seatNumber;
 
     //아래 변수들은 추가할지 상의 필요
     //private String password
     //private LocalDateTime reserveDateTime
 
-    public Ticket(String name, String birth, String seatNumber) {
+    public Reservation(String name, String birth, String phoneNumber, String seatNumber) {
         this.name = name;
         this.birth = birth;
+        this.phoneNumber = phoneNumber;
         this.seatNumber = seatNumber;
     }
 
@@ -30,6 +30,8 @@ public class Ticket {
     public String getName() {
         return name;
     }
+
+    public String getPhoneNumber() {return phoneNumber;}
 
     public String getBirth() {
         return birth;
